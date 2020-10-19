@@ -1,11 +1,8 @@
 body {
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  background-color:  rgba(0,0,0,.125) !important;
 }
 
 a {
   color: #00B7FF;
-}
-.btn-outline-success{
-  color: white !important;
-  border-color: white !important;
 }
