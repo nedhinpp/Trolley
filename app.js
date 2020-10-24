@@ -4,6 +4,8 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+var bcrypt = require('bcrypt');
+var session = require('express-session');
 
 var adminRouter = require('./routes/admin');
 var usersRouter = require('./routes/user');
@@ -26,7 +28,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(fileUpload());
-
+app.use(session({secret:"Key",cookie:{maxAge:6000000}}));
 
 app.use('/', usersRouter);
 app.use('/admin', adminRouter);

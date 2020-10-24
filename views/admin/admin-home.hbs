@@ -1,30 +1,35 @@
 <section>
-    <div class="container">
-        <div class="row">
-            <a href="/admin/add-product" class="btn btn-success ml-auto mt-4">Add Product</a>
-        </div>
-        <table class="table mt-5" >
-  <thead>
-    <tr>
-      <th scope="col">Barcode</th>
-      <th scope="col">Product</th>
-      <th scope="col">Category</th>
-      <th scope="col">Title</th>
-      <th scope="col">Image</th>
-    </tr>
-  </thead>
-  <tbody>
-      {{#each products}}
-    <tr>
-      <th scope="row">{{this.barcode}}1</th>
-      <td>{{this.product_name}}</td>
-      <td>{{this.price}}</td>
-      <td>{{this.category}}</td>
-      <td>{{this.description}}</td>
-      <td> <img style="width: 50px;height:50px" src="/images/product-images/{{this._id}}.JPG"></td>
-    </tr>
-    {{/each}}
-  </tbody>
-</table>
-</div>
+  <div class="container">
+    <div class="row">
+      <a href="/admin/add-product" class="btn btn-success ml-auto mt-4">Add Product</a>
+    </div>
+    <table class="table mt-5">
+      <thead>
+        <tr>
+          <th scope="col">Barcode</th>
+          <th scope="col">Product</th>
+          <th scope="col">Category</th>
+          <th scope="col">Title</th>
+          <th scope="col">Description</th>
+          <th scope="col">Image</th>
+          <th scope="col">Edit</th>
+          <th scope="col">Delete</th>
+        </tr>
+      </thead>
+      <tbody>
+        {{#each products}}
+        <tr>
+          <th scope="row">{{this.barcode}}1</th>
+          <td>{{this.product_name}}</td>
+          <td>{{this.price}}</td>
+          <td>{{this.category}}</td>
+          <td>{{this.description}}</td>
+          <td> <img style="width: 50px;height:50px" src="/images/product-images/{{this._id}}.JPG"></td>
+          <td> <a class="" href="/admin/edit-product/{{this._id}}">Edit</a></td>
+          <td> <a class="" href="/admin/delete-product/{{this._id}}">Delete</a></td>
+        </tr>
+        {{/each}}
+      </tbody>
+    </table>
+  </div>
 </section>
