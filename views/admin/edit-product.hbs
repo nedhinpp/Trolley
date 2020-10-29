@@ -1,0 +1,50 @@
+<section>
+    <div class="container mt-4">
+        <div class="row">
+            <div class="col-md-6">
+                <h2 class="text-center">Edit Product</h2>
+                <form action='/admin/edit-product' method="POST" enctype="multipart/form-data">
+                    <div class="form-group">
+                        <label for="product_name">Name</label>
+                        <input type="text" class="form-control" name="product_name" id="product_name"
+                            placeholder="Enter Product Name" value="{{products.product_name}}">
+                    </div>
+                    <div class="form-group">
+                        <label for="barcode">Barcode</label>
+                        <input type="text" class="form-control" name="barcode" id="barcode" placeholder="Enter Barcode" value="{{products.barcode}}">
+                    </div>
+                    <div class="form-group">
+                        <label for="category">Category</label>
+                        <input type="text" class="form-control" name="category" id="category"
+                            placeholder="Enter Category" value="{{products.category}}">
+                    </div>
+                    <div class="form-group">
+                        <label for="description">Description</label>
+                        <input type="text" class="form-control" id="description" name="description"
+                            placeholder="Enter Description" value="{{products.description}}">
+                    </div>
+                    <div class="form-group">
+                        <label for="price">Price</label>
+                        <input type="text" class="form-control" id="price" name="price" placeholder="Enter Price" value="{{products.price}}">
+                    </div>
+                    <div class="form-group">
+                        <input type="hidden" class="form-control" id="prid" name="prid" placeholder="Enter Price" value="{{products._id}}">
+                    </div>
+                    <div class="form-group">
+                        <label for="product_image">Product Photo</label>
+                        <input type="file" value="" class="form-control-file" onchange="viewImage(event)" name="product_image" id="product_image">
+                        <img src="/images/product-images/{{products._id}}.JPG" alt="" style="width: 100px;height:100px;" id="imgView">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Save</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<script>
+    function viewImage(event){
+        document.getElementById('imgView').src=URL.createObjectURL(event.target.files[0]);
+    }
+</script>
