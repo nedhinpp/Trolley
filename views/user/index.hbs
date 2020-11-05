@@ -12,7 +12,7 @@
                             <h5 class="card-title">{{this.product_name}}</h5>
                             <p style="height: 3rem;">{{this.description}}</p>
                             <p class="text-left font-weight-bold">Rs. {{this.price}}
-                            <a href="#" class="btn btn-primary text-center" style="float: right;">Add to cart</a></p>
+                            <a href="javascript:addItemsToCart('{{this._id}}')" id="addToCartBtn_{{this._id}}" class="btn btn-primary text-center" style="float: right;">Add to cart</a></p>
                         </div>
                     </div>
                 </div>

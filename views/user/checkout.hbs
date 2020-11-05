@@ -1,0 +1,187 @@
+
+    <div class="container">
+
+      <!-- Heading -->
+      <h2 class="my-5 h2 text-center">Checkout form</h2>
+
+      <!--Grid row-->
+      <div class="row">
+
+        <!--Grid column-->
+        <div class="col-md-7 mb-4">
+
+          <!--Card-->
+          <div class="card">
+
+            <!--Card content-->
+            <form class="card-body" id="checkout-form">
+
+              <!--Grid row-->
+              <div class="row">
+
+                <!--Grid column-->
+                <div class="col-md-6 mb-2">
+
+                  <!--firstName-->
+                  <div class="md-form ">
+                    <label for="firstName" class="">First name</label>
+                    <input type="text" id="firstName" name="firstName" class="form-control">
+
+                  </div>
+
+                </div>
+                <!--Grid column-->
+
+                <!--Grid column-->
+                <div class="col-md-6 mb-2">
+
+                  <!--lastName-->
+                  <div class="md-form">
+                    <label for="lastName" class="">Last name</label>
+                    <input type="text" id="lastName" name="lastName" class="form-control">
+                  </div>
+
+                </div>
+                <!--Grid column-->
+
+              </div>
+              <!--Grid row-->
+
+              <!--address-->
+              <div class="md-form mb-2">
+                <label for="address" class="">Address</label>
+
+                <input type="text" id="address" name="address" class="form-control" placeholder="1234 Main St">
+              </div>
+
+              <!--address-2-->
+              <div class="md-form mb-2">
+                <label for="address_2" class="">Address 2 (optional)</label>
+
+                <input type="text" id="address_2" name="address_2" class="form-control" placeholder="Apartment or suite">
+              </div>
+
+              <!--Grid row-->
+              <div class="row">
+
+                <!--Grid column-->
+                <div class="col-lg-4 col-md-12 mb-4">
+
+                  <label for="country">Country</label>
+                  <select class="custom-select d-block w-100" id="country" name="country" required>
+                    <option value="">Choose...</option>
+                    <option>India</option>
+                  </select>
+                  <div class="invalid-feedback">
+                    Please select a valid country.
+                  </div>
+
+                </div>
+                <!--Grid column-->
+
+                <!--Grid column-->
+                <div class="col-lg-4 col-md-6 mb-4">
+
+                  <label for="state">State</label>
+                  <select class="custom-select d-block w-100" id="state" name="state" required>
+                    <option value="">Choose...</option>
+                    <option>Kerala</option>
+                  </select>
+                  <div class="invalid-feedback">
+                    Please provide a valid state.
+                  </div>
+
+                </div>
+                <!--Grid column-->
+
+                <!--Grid column-->
+                <div class="col-lg-4 col-md-6 mb-4">
+
+                  <label for="zip">Pincode</label>
+                  <input type="text" class="form-control" id="zip" name="zip" placeholder="" required>
+                  <div class="invalid-feedback">
+                    Pin code required.
+                  </div>
+
+                </div>
+                <!--Grid column-->
+
+              </div>
+              <!--Grid row-->
+
+
+
+          </div>
+          <!--/.Card-->
+
+        </div>
+        <!--Grid column-->
+
+        <!--Grid column-->
+        <div class="col-md-4 mb-4">
+
+          <!-- Heading -->
+          <h4 class="d-flex justify-content-between align-items-center mb-3">
+            <span class="text-muted">Your cart</span>
+            <span class="badge badge-secondary badge-pill">{{cartCount}}</span>
+          </h4>
+
+          <!-- Cart -->
+          <ul class="list-group mb-3 z-depth-1">
+              {{#each products}}
+            <li class="list-group-item d-flex justify-content-between lh-condensed">
+              <div>
+                <h6 class="my-0">{{this.product.product_name}}</h6>
+                <small class="text-muted">Rs. {{this.product.price}}</small>
+              </div>
+              <span class="text-muted">{{this.quantity}}</span>
+            </li>
+            {{/each}}
+            <li class="list-group-item d-flex justify-content-between">
+              <span>Total Amount</span>
+              <strong>Rs. {{total}}</strong>
+            </li>
+          </ul>
+          <!-- Cart -->
+
+          <!-- Promo code -->
+
+              <div class="d-block my-3">
+                <div class="custom-control custom-radio">
+                  <input id="credit" name="paymentMethod" value="COD" type="radio" class="custom-control-input" checked required>
+                  <label class="custom-control-label" for="credit">Cash On Delivery</label>
+                </div>
+                <div class="custom-control custom-radio">
+                  <input id="debit" name="paymentMethod" type="radio" value="online" class="custom-control-input" required>
+                  <label class="custom-control-label" for="debit">Online Payment</label>
+                </div>
+
+              </div>
+              <input type="hidden" name="userId" id="userId" value="{{user._id}}">
+                <hr class="mb-4">
+              <button class="btn btn-primary btn-lg btn-block" type="submit">Continue to checkout</button>
+
+          </form>
+          <!-- Promo code -->
+
+        </div>
+        <!--Grid column-->
+
+      </div>
+      <!--Grid row-->
+
+    </div>
+  <!--Main layout-->
+<script>
+  $("#checkout-form").submit((e)=>{
+    e.preventDefault();
+    $.ajax({
+      url:'/place-order',
+      method:'post',
+      data:$("#checkout-form").serialize(),
+      success:(response)=>{
+        location.replace('/order-success');
+      }
+    })
+  })
+</script>

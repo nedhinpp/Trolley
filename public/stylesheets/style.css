@@ -1,8 +1,13 @@
 body {
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-  background-color:  rgba(0,0,0,.125) !important;
+  background-color: white !important;
 }
 
 a {
   color: #00B7FF;
+}
+
+.cart-item-count{
+  height: 35px;
+  width: 35px;
 }

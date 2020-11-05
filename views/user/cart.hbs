@@ -1,1 +1,39 @@
-<h2 class="text-center">Cart is Empty</h2>
+<section>
+    <div class="container">
+        <table class="table mt-5">
+            <thead>
+                <tr>
+                    <th scope="col">Item</th>
+                    <th scope="col">Title</th>
+                    <th scope="col">Price</th>
+                    <th scope="col">Quantity</th>
+                    <th scope="col">Delete</th>
+                </tr>
+            </thead>
+            <tbody>
+                {{#each products}}
+                <tr>
+                    <td> <img style="width: 50px;height:50px" src="/images/product-images/{{this.product._id}}.JPG">
+                    </td>
+                    <td>{{this.product.product_name}}</td>
+                    <td>Rs. {{this.product.price}}</td>
+
+                    <td><button class="cart-item-count mr-3 btn btn-primary"
+                            onclick="updateCart('{{this._id}}','{{this.product._id}}', '{{../user._id}}',-1)">-</button><span
+                            id="cart_{{this.product._id}}">{{this.quantity}}</span><button
+                            class="cart-item-count ml-3 btn btn-primary"
+                            onclick="updateCart('{{this._id}}','{{this.product._id}}', '{{../user._id}}',1)">+</button>
+                    </td>
+                    <td> <a class="btn btn-danger" href="javascript:removeItemFromCart('{{this._id}}','{{this.product._id}}')">Delete</a></td>
+                </tr>
+                {{/each}}
+            </tbody>
+        </table>
+        <hr>
+        <div class="float-right pr-5">
+        <h5 class="float-right mr-5 mt-4">Total: Rs. <span id="cart_total">{{total}}</span></h5><br>
+        <a href="/place-order" class="btn btn-success mt-3" style="width:100%"><b>Place Order</b></a>
+        </div>
+    </div>
+
+</section>
