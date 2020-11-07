@@ -1,5 +1,6 @@
 <section>
     <div class="container">
+        {{#if products}}
         <table class="table mt-5">
             <thead>
                 <tr>
@@ -29,11 +30,18 @@
                 {{/each}}
             </tbody>
         </table>
-        <hr>
+          <hr>
         <div class="float-right pr-5">
         <h5 class="float-right mr-5 mt-4">Total: Rs. <span id="cart_total">{{total}}</span></h5><br>
         <a href="/place-order" class="btn btn-success mt-3" style="width:100%"><b>Place Order</b></a>
         </div>
+        {{else}}
+        <div class="text-center">
+        <h5 class="text-center mt-5">Your Cart is Empty</h5>
+        <a href="/" class="btn btn-success mt-3 text-center" style=""><b>Continue Shopping</b></a>
+        </div>
+        {{/if}}
+      
     </div>
 
 </section>

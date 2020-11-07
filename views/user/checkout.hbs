@@ -180,8 +180,62 @@
       method:'post',
       data:$("#checkout-form").serialize(),
       success:(response)=>{
-        location.replace('/order-success');
+        if(response.codStatus){
+          location.replace('/order-success');
+        }
+        else{
+          razorpayPayment(response)
+        }
+        
       }
     })
   })
+
+  function razorpayPayment(order){
+    var options = {
+    "key": "rzp_test_7li7wmSuoMjECf", // Enter the Key ID generated from the Dashboard
+    "amount": order.amount.toFixed(2), // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
+    "currency": "INR",
+    "name": "Trolley",
+    "description": "Test Transaction",
+    "image": "https://example.com/your_logo",
+    "order_id": order.id, //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
+    "handler": function (response){
+        verifyRazorPayment(response, order);
+    },
+    "prefill": {
+        "name": "Nidhin P P",
+        "email": "nedhinpp@example.com",
+        "contact": "9567152712"
+    },
+    "notes": {
+        "address": "Razorpay Corporate Office"
+    },
+    "theme": {
+        "color": "#3399cc"
+    }
+};
+var rzp1 = new Razorpay(options);
+rzp1.open();
+  }
+
+  function verifyRazorPayment(payment, order){
+      $.ajax({
+        url:'/verify-payment',
+        data:{
+          payment,
+          order
+        },
+        method:'post',
+        success:(response)=>{
+          if(response.status){
+            console.log("alert1"+response);
+            location.href = '/order-success';
+          }
+          else{
+            alert("Payment Failed For This Order");
+          }
+        }
+      })
+  }
 </script>
